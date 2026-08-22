@@ -1,0 +1,70 @@
+clear;
+x = input('Ingrese un numero que quiera');
+i=2;
+
+Contador=0;
+while i<=x
+    Contador=Contador+i;
+    i=i+2;
+end
+disp("El numero final es"+ Contador)
+
+Resultado=sumaPares(15);
+%%
+% Punto 3
+clear; 
+M = rand(6,4);
+
+mFila3 = mean(M(3,:));
+Mcolumn= mean(M(:,2));
+
+disp("La media de las filas es de "+mFila3+ " y la media de la columna es de "+Mcolumn)
+
+%%
+% Punto 4
+clear;
+X = randi([1, 10], 4, 4);
+
+X = (2*X)+1 
+%%
+% Punto 5
+clear;
+
+A = [1 2 3 4;
+    5 6 7 8;
+    9 10 11 12;
+    13 14 15 16];
+
+Diagonal = sum(diag(A));
+disp("La suma de la diagonal es de  " +Diagonal)
+
+x = input('Ingrese la fila (x): ');
+y = input('Ingrese la columna (y): ');
+
+valor = A(x,y);
+
+fprintf('El valor en (%d,%d) es: %d\n', x, y, valor);
+
+segundaFila = A(2,:);
+
+disp(segundaFila)
+
+%% Punto del DICOM
+
+
+clear;
+archivo = 'dcm.dcm';
+
+info = dicominfo(archivo);
+
+% Leer imagen
+imagen = dicomread(archivo);
+
+% Mostrar imagen
+figure;
+imshow(imagen, []);
+
+title('Radiografía de tórax');
+
+% Mostrar información DICOM
+disp(info);
