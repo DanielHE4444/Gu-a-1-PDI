@@ -1,0 +1,303 @@
+% PUNTO 1 
+clc;
+clear;
+close all;
+
+% Matriz original
+A = [2 5 4 1 2 3;
+    5 5 4 3 3 2;
+    1 2 2 2 1 1;
+    7 7 7 2 1 0];
+
+% Factor K
+K = 2;
+
+% Reducir la resolución de gris
+Ar = floor(A/K);
+
+
+disp('Matriz original:');
+disp(A);
+
+
+disp('Matriz con resolución de gris reducida:');
+disp(Ar);
+
+figure;
+
+subplot(1,2,1);
+imagesc(A);
+colormap(gray);
+colorbar;
+title('Imagen original');
+axis image;
+
+subplot(1,2,2);
+imagesc(Ar);
+colormap(gray);
+colorbar;
+title('Resolución de gris reducida K=2');
+axis image;
+
+%% Punto 2
+
+clc;
+clear;
+close all;
+
+% Matriz original
+A = [2 5 4 1 2 3;
+    5 5 4 3 3 2;
+    1 2 2 2 1 1;
+    7 7 7 2 1 0];
+
+% Factor
+K = 2;
+
+
+% Expandir
+Aex = A * K;
+
+
+disp('Matriz original:');
+disp(A);
+
+
+disp('Matriz expandida:');
+disp(Aex);
+
+
+figure;
+
+subplot(1,2,1);
+imagesc(A);
+colormap(gray);
+colorbar;
+title('Original');
+axis image;
+
+
+subplot(1,2,2);
+imagesc(Aex);
+colormap(gray);
+colorbar;
+title('Expandida');
+axis image;
+
+%% Punto 3
+
+clc;
+clear;
+close all;
+
+% Matriz original
+A = [2 5 4 1 2 3;
+     5 5 4 3 3 2;
+     1 2 2 2 1 1;
+     7 7 7 2 1 0];
+
+K = 2;
+
+[Ar, Ae] = reducirExpandir(A, K);
+
+% Mostrar resultados en Command Window
+disp('Matriz original:');
+disp(A);
+
+disp('Matriz reducida:');
+disp(Ar);
+
+disp('Matriz expandida:');
+disp(Ae);
+
+% Mostrar las imágenes
+figure;
+
+subplot(1,3,1);
+imagesc(A, [0 7]);
+colormap(gray);
+colorbar;
+title('Imagen original');
+axis image;
+
+subplot(1,3,2);
+imagesc(Ar, [0 7]);
+colorbar;
+title('Imagen reducida');
+axis image;
+
+subplot(1,3,3);
+imagesc(Ae, [0 7]);
+colorbar;
+title('Imagen expandida');
+axis image;
+%% PUNTO 4 
+
+clc;
+clear;
+close all;
+
+A = [2 5 4 1 2 3;
+    5 5 4 3 3 2;
+    1 2 2 2 1 1;
+    7 7 7 2 1 0];
+
+
+T = [1 0;
+    0 1];
+
+tx = 2;
+ty = 1;
+
+
+B = transformacionAfin(A,T,tx,ty);
+
+
+disp('Matriz original:');
+disp(A);
+
+disp('Matriz transformada:');
+disp(B);
+
+
+figure;
+
+subplot(1,2,1);
+imagesc(A);
+colormap(gray);
+colorbar;
+title('Original');
+axis image;
+
+subplot(1,2,2);
+imagesc(B);
+colormap(gray);
+colorbar;
+title('Transformación afín');
+axis image;
+%% TRASLACION
+
+clc;
+clear;
+close all;
+
+A = [2 5 4 1 2 3;
+    5 5 4 3 3 2;
+    1 2 2 2 1 1;
+    7 7 7 2 1 0];
+
+% Matriz identidad
+T = [1 0;
+    0 1];
+
+% Desplazamiento
+tx = 2;
+ty = 1;
+
+% Transformar
+B = transformacionAfin(A,T,tx,ty);
+
+% Mostrar
+figure;
+
+subplot(1,2,1);
+imagesc(A);
+colormap(gray);
+colorbar;
+title('Original');
+axis image;
+
+subplot(1,2,2);
+imagesc(B);
+colormap(gray);
+colorbar;
+title('Traslación');
+axis image;
+
+%% ROTACION
+
+clc;
+clear;
+close all;
+
+A = [2 5 4 1 2 3;
+    5 5 4 3 3 2;
+    1 2 2 2 1 1;
+    7 7 7 2 1 0];
+
+% Angulo
+angulo = 30;
+
+% Convertir a radianes
+theta = deg2rad(angulo);
+
+% Matriz de rotación
+T = [cos(theta) -sin(theta);
+    sin(theta)  cos(theta)];
+
+% Sin traslación
+tx = 0;
+ty = 0;
+
+% Aplicar transformación
+B = transformacionAfin(A,T,tx,ty);
+
+% Mostrar
+figure;
+
+subplot(1,2,1);
+imagesc(A);
+colormap(gray);
+colorbar;
+title('Original');
+axis image;
+
+subplot(1,2,2);
+imagesc(B);
+colormap(gray);
+colorbar;
+title('Rotación 30 grados');
+axis image;
+
+%% ESCALAMIENTO
+
+clc;
+clear;
+close all;
+
+A = [2 5 4 1 2 3;
+    5 5 4 3 3 2;
+    1 2 2 2 1 1;
+    7 7 7 2 1 0];
+
+% Factores de escala
+Sx = 2;
+Sy = 2;
+
+% Matriz de escalamiento
+T = [Sx 0;
+    0 Sy];
+
+% Sin traslación
+tx = 0;
+ty = 0;
+
+% Aplicar transformación
+B = transformacionAfin(A,T,tx,ty);
+
+% Mostrar
+figure;
+
+subplot(1,2,1);
+imagesc(A);
+colormap(gray);
+colorbar;
+title('Original');
+axis image;
+
+subplot(1,2,2);
+imagesc(B);
+colormap(gray);
+colorbar;
+title('Escalamiento x2');
+axis image;
