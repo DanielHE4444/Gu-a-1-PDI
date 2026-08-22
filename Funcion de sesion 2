@@ -1,0 +1,7 @@
+function [reducida, expandida] = reducirExpandir(A,K)
+
+    reducida = floor(A/K);
+
+    expandida = reducida*K;
+
+end
